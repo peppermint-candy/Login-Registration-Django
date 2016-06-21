@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Registration</title>
+</head>
+<body>
+	<div style="height: 200px; width:400px; text-align:center; vertical-align:top; margin: 100px auto;">
+		<h1>Success !!! Welcome {{ request.session.name }} </h1>
+		<h2>You are in!</h2>
+		<p>Click <a href="{% url 'users' %}">here</a> to go back </p>
+	</div>
+
+</body>
+</html>
