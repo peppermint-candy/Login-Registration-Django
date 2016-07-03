@@ -22,7 +22,7 @@ def register(request):
 		else:
 			for i in user_tuple2[1]:
 				messages.info( request, user_tuple2[1][i], extra_tags = 'rg')
-		 	return redirect('/users')
+		 	return redirect('/')
 
 			#make user register again
 	
@@ -30,10 +30,6 @@ def success(request):
 	return render (request, "logged_in.html")
 
 def login(request):
-
-	# if request.POST['elogin'] =="" or request.POST['Lpw']=="":
-	# 	messages.error(request, "Please fill in the box")
-	# 	return redirect('/users')
 
 	if request.method == 'POST':
 		user_tuple = User.userManager.login(request.POST['elogin'] , request.POST['Lpw'])
@@ -45,7 +41,7 @@ def login(request):
 		else:	
 			for i in user_tuple[1]:
 				messages.info( request, user_tuple[1][i], extra_tags = 'lg')
-			return redirect('/users')
+			return redirect('/')
 
 
 	

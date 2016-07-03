@@ -1,75 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		div {
-			min-height: 350px;
-			width: 460px;
-			display: inline-block;
-			vertical-align: top;
-			margin:20px 20px;
-			border: 2px solid blue;
-		}
-
-		h1 {
-			margin: 20px auto;
-			text-align: center;
-		}
-
-		h2 {
-			margin: 20px auto;
-			text-align: center;
-
-		}
-
-		p.label {
-			width: 180px;
-			height: 20px;
-			display: inline-block;
-			margin: 2px 10px;
-		}
-
-	</style>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<title>Log in and Registration Form</title>
 </head>
 <body>
-	<div><h1>Register Here!</h1>
+	<div class="ct">
+		<div class="box"><h1>Register</h1>
 
-		<form action='/register' method="post">
-		 {% csrf_token %}
-		<p class="label" >email:</p><input type="text" name="email"><br><br>
-		<p class="label" >First Name:</p><input type="text" name="first_name"><br><br>
-		<p class="label" >Last Name:</p><input type="text" name="last_name"><br><br>
-		<p class="label" >Password:</p><input type="password" name="pw"><br><br>
-		<p class="label" >Confirm Password:</p><input type="password" name="c_pw"><br><br>
-		<input style="margin-left: 308px;" type="submit" value="Register">
-			{% if messages %}
+			<form action='/register' method="post">
+				{% csrf_token %}
+				<p class="label" >email:</p><input type="text" name="email">
+				<br><br>
+				<p class="label" >First Name:</p><input type="text" name="first_name"><br><br>
+				<p class="label" >Last Name:</p><input type="text" name="last_name"><br><br>
+				<p class="label" >Password:</p><input type="password" name="pw"><br><br>
+				<p class="label" >Confirm Password:</p><input type="password" name="c_pw"><br><br>
+				<p class="label">Date of Birth</p><input type="date" name="dob" max="-12-31"><br><br>
+				<input style="margin-left: 308px;" type="submit" value="Register">
+				{% if messages %}
 				{% for message in messages %}
-					{% if message.extra_tags == 'rg' %}
-					<p style="color:red; font-weight: bold;">{{ message }}</p>
-					{% endif %}
+				{% if message.extra_tags == 'rg' %}
+				<p style="color:red; font-weight: bold;">{{ message }}</p>
+				{% endif %}
 				{% endfor %}
-			{% endif %}
+				{% endif %}
 
-		</form>
-		 <p>Alrady have an account, go ahead and log in!</p>
+			</form>
+			<p>Alrady have an account, go ahead and log in!</p>
 
-	</div>
+		</div>
 
-	<div>
-		<h2>Login Here!</h2>
-		<form action="/login" method="post">
-			{% csrf_token %}
-			<p class="label">Login e-mail: </p><input type="text" name="elogin"><br><br>
-			<p class="label">Password: </p><input type="password" name="Lpw"><br><br>
-			{% if messages %}
+		<div class="box">
+			<h2>Login</h2>
+			<form action="/login" method="post">
+				{% csrf_token %}
+				<p class="label">Login e-mail: </p><input type="text" name="elogin"><br><br>
+				<p class="label">Password: </p><input type="password" name="Lpw"><br><br>
+				{% if messages %}
 				{% for message in messages %}
-					{% if message.extra_tags == 'lg' %}
-					<p style="color:red; font-weight: bold;">{{ message }}</p>
-					{% endif %}
+				{% if message.extra_tags == 'lg' %}
+				<p style="color:red; font-weight: bold;">{{ message }}</p>
+				{% endif %}
 				{% endfor %}
-			{% endif %}
-			<input style="margin-left: 325px;" type="submit" value="Login">
-		</form>
+				{% endif %}
+				<input style="margin-left: 325px;" type="submit" value="Login">
+			</form>
 	</div>
+</body>
 </html>

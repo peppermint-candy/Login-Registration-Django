@@ -19,7 +19,7 @@ class UserManager(models.Manager):
 			return(False, {"login" : "login failed, please try again"})
 
 	def register(self,first_name, last_name, email, password, confirm_password):
-		# we want to verify all the info and make sure that the user hasne't been registered. <-- all of which cause errors!
+		# we want to verify all the info and make sure that the user hasn't been registered. <-- all of which cause errors!
 		errors = {}
 
 		if len(first_name) <2 :
