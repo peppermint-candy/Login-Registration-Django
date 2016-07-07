@@ -8,6 +8,10 @@
 		<h1>Success !!! Welcome {{ request.session.name }} </h1>
 		<h2>You are in!</h2>
 		<p>Click <a href="{% url 'users' %}">here</a> to go back </p>
+		{% for user in users %}
+		<p>{{ user.first_name }}</p>
+		<p> {{ user.alias }} </p>
+		{% endfor %}
 	</div>
 
 </body>

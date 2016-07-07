@@ -15,9 +15,10 @@
 				<br><br>
 				<p class="label" >First Name:</p><input type="text" name="first_name"><br><br>
 				<p class="label" >Last Name:</p><input type="text" name="last_name"><br><br>
+				<p class="label">Alias:</p><input type="text" name="alias"><br><br>
 				<p class="label" >Password:</p><input type="password" name="pw"><br><br>
 				<p class="label" >Confirm Password:</p><input type="password" name="c_pw"><br><br>
-				<p class="label">Date of Birth</p><input type="date" name="dob" max="-12-31"><br><br>
+				<p class="label">Date of Birth</p><input type="date" name="dob" max="2015-12-31" min="1916-01-01"><br><br>
 				<input style="margin-left: 308px;" type="submit" value="Register">
 				{% if messages %}
 				{% for message in messages %}
