@@ -18,7 +18,7 @@ class UserManager(models.Manager):
 		else:
 			return(False, {"login" : "login failed, please try again"})
 
-	def register(self,first_name, last_name, email, password, confirm_password):
+	def register(self,first_name, last_name, email, password, confirm_password,alias, dob):
 		# we want to verify all the info and make sure that the user hasn't been registered. <-- all of which cause errors!
 		errors = {}
 
@@ -36,6 +36,10 @@ class UserManager(models.Manager):
 			errors['confirm_password'] = "Password must match"
 		if not EMAIL_REGEX.match(email):
 			errors['email'] = "Please enter a valid email"
+		if len(alias) <2 :
+			errors['alias'] = "Alias is too short"
+		if dob == "":
+			errors['date'] = "Please fill in your date of birth"
 
 		if self.filter(email__iexact = email):
 			errors['invalid'] = "Invalid registration"
@@ -47,7 +51,7 @@ class UserManager(models.Manager):
 		else:
 		#register this person!
 			hash_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-			self.create(first_name = first_name, last_name = last_name, email = email, password = hash_password)
+			self.create(first_name = first_name, last_name = last_name, email = email, password = hash_password, alias = alias, dob = dob)
 			return (True, self.filter(email = email)[0])
 
 class User(models.Model):
@@ -55,6 +59,8 @@ class User(models.Model):
 	last_name = models.CharField(max_length=45)
 	email = models.EmailField()
 	password = models.CharField(max_length=255)
+	alias = models.CharField(max_length=45)
+	dob = models.DateField()
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	userManager = UserManager()

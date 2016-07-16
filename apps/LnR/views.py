@@ -14,7 +14,7 @@ def index(request):
 
 def register(request):
 	if request.method == 'POST':
-		user_tuple2 = User.userManager.register(request.POST['first_name'], request.POST['last_name'], request.POST['email'], request.POST['pw'], request.POST['c_pw'])
+		user_tuple2 = User.userManager.register(request.POST['first_name'], request.POST['last_name'], request.POST['email'], request.POST['pw'], request.POST['c_pw'], request.POST['alias'],request.POST['dob'])
 		if user_tuple2[0]:
 			request.session['id'] = user_tuple2[1].id
 			request.session['name'] = user_tuple2[1].first_name + " " + user_tuple2[1].last_name
@@ -27,7 +27,10 @@ def register(request):
 			#make user register again
 	
 def success(request):
-	return render (request, "logged_in.html")
+	context = {
+		"users" : User.userManager.all()
+	}
+	return render (request, "logged_in.html", context)
 
 def login(request):
 
